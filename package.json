@@ -1,0 +1,20 @@
+{
+  "name": "pokedex-2k20",
+  "version": "1.0.0",
+  "description": "Pokedex example",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmachens/pokedex-2k20.git"
+  },
+  "keywords": [],
+  "author": "Leon Machens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lmachens/pokedex-2k20/issues"
+  },
+  "homepage": "https://github.com/lmachens/pokedex-2k20#readme"
+}
