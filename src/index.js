@@ -1,10 +1,3 @@
-function component() {
-  const element = document.createElement('div');
+import { pokemon } from './components/pokemon';
 
-  element.innerHTML = 'Pokedex';
-
-  return element;
-}
-
-const div = component();
-document.body.appendChild(div);
+document.body.appendChild(pokemon());
