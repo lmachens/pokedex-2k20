@@ -1,5 +1,5 @@
 import './index.scss';
 
-import { pokemon } from './components/pokemon';
+import { title } from './components/title';
 
-document.body.appendChild(pokemon());
+document.body.appendChild(title('Pokedex 2k20'));
