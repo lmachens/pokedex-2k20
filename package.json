@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "test": "eslint src/**",
+    "test": "eslint --ext .js src/",
     "start": "webpack-dev-server --open"
   },
   "repository": {
