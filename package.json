@@ -1,0 +1,38 @@
+{
+  "name": "pokedex-2k20",
+  "version": "1.0.0",
+  "description": "Pokedex example",
+  "private": true,
+  "scripts": {
+    "test": "eslint src/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmachens/pokedex-2k20.git"
+  },
+  "keywords": [],
+  "author": "Leon Machens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lmachens/pokedex-2k20/issues"
+  },
+  "homepage": "https://github.com/lmachens/pokedex-2k20#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{js}": "eslint --fix",
+    "*.{js,css,scss,md,json}": "prettier --write"
+  }
+}
