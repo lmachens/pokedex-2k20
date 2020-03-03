@@ -6,6 +6,5 @@ export function title(text) {
     innerText: text,
     className: 'title'
   });
-
   return element;
 }

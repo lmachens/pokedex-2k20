@@ -1,0 +1,19 @@
+@use "../theme";
+
+.pokemons {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pokemon {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 4px;
+  border: 1px solid theme.$primary-color;
+  padding: 4px;
+  border-radius: 0.25rem;
+  background: rgb(49, 158, 116);
+}
