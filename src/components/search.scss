@@ -1,3 +1,14 @@
+@use "../theme";
+
 .search {
-  background: lightblue;
+  background: none;
+  border: none;
+  border-bottom: 1px solid theme.$primary-color;
+  width: 140px;
+  padding-bottom: 4px;
+  text-align: center;
+
+  &::placeholder {
+    color: lighten(theme.$primary-color, 30%);
+  }
 }

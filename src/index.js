@@ -1,7 +1,9 @@
 import './index.scss';
+import { app } from './app';
 
-import { title } from './components/title';
-import { search } from './components/search';
+const elements = app();
+elements.forEach(element => {
+  document.body.appendChild(element);
+});
 
-document.body.appendChild(title('Pokedex 2k20'));
-document.body.appendChild(search());
+// elements.forEach(document.body.appendChild);
