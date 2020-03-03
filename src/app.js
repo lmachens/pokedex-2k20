@@ -4,6 +4,7 @@ import { createTitle } from './components/title';
 import { createSearchInput } from './components/search';
 import { createPokemons } from './components/pokemons';
 import Logo from './assets/pokemon.png';
+import { appendContent } from './lib/dom';
 
 const allPokemons = ['Pikachu', 'Pichu', 'Marwinchu', 'Juliachu', 'Johannachu'];
 
@@ -20,13 +21,10 @@ export function app() {
     className: 'logo',
     src: Logo
   });
-
-  header.appendChild(logo);
-  header.appendChild(title);
-  main.appendChild(searchInput);
-
   let pokemons = createPokemons(allPokemons);
-  main.appendChild(pokemons);
+
+  appendContent(header, [logo, title]);
+  appendContent(main, [searchInput, pokemons]);
 
   searchInput.addEventListener('input', event => {
     main.removeChild(pokemons);
@@ -37,7 +35,7 @@ export function app() {
     });
 
     pokemons = createPokemons(filteredPokemons);
-    main.appendChild(pokemons);
+    appendContent(main, pokemons);
   });
 
   return [header, main];
