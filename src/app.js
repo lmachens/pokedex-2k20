@@ -2,7 +2,9 @@ import './app.scss';
 import { createElement } from './lib/dom';
 import { title } from './components/title';
 import { search } from './components/search';
-// import { pokemons } from './components/pokemons';
+import { pokemons } from './components/pokemons';
+
+const allPokemons = ['Pikachu', 'Pichu', 'Marwinchu', 'Juliachu', 'Johannachu'];
 
 export function app() {
   const header = createElement('header', {
@@ -17,8 +19,8 @@ export function app() {
   header.appendChild(titleElement);
   main.appendChild(searchElement);
 
-  // const pokemonsElement = pokemons(['Pikachu', 'Pichu', 'Marwinchu']);
-  // main.appendChild(pokemonsElement);
+  const pokemonsElement = pokemons(allPokemons);
+  main.appendChild(pokemonsElement);
 
   searchElement.addEventListener('input', event => {
     console.log(event.target.value);
