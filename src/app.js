@@ -19,11 +19,19 @@ export function app() {
   header.appendChild(titleElement);
   main.appendChild(searchElement);
 
-  const pokemonsElement = pokemons(allPokemons);
-  main.appendChild(pokemonsElement);
+  const searchResults = createElement('div', {});
+  main.appendChild(searchResults);
 
   searchElement.addEventListener('input', event => {
-    console.log(event.target.value);
+    searchResults.innerHTML = ''; // clear search results
+
+    const searchValue = event.target.value;
+    const filteredPokemons = allPokemons.filter(pokemon => {
+      return pokemon.startsWith(searchValue);
+    });
+
+    const pokemonsElement = pokemons(filteredPokemons);
+    searchResults.appendChild(pokemonsElement);
   });
 
   return [header, main];
