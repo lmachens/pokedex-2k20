@@ -3,6 +3,7 @@ import { createElement } from './lib/dom';
 import { title } from './components/title';
 import { search } from './components/search';
 import { pokemons } from './components/pokemons';
+import Logo from './assets/pokemon.png';
 
 const allPokemons = ['Pikachu', 'Pichu', 'Marwinchu', 'Juliachu', 'Johannachu'];
 
@@ -15,7 +16,12 @@ export function app() {
   });
   const titleElement = title('Pokedex 2k20');
   const searchElement = search();
+  const logo = createElement('img', {
+    className: 'logo',
+    src: Logo
+  });
 
+  header.appendChild(logo);
   header.appendChild(titleElement);
   main.appendChild(searchElement);
 
