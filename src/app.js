@@ -2,7 +2,7 @@ import './app.scss';
 import { createElement } from './lib/dom';
 import { createTitle } from './components/title';
 import { createSearchInput } from './components/search';
-import { createPokemons } from './components/pokemons';
+import { createSearchResults } from './components/pokemons';
 import Logo from './assets/pokemon.png';
 import { appendContent } from './lib/dom';
 
@@ -31,19 +31,19 @@ export function app() {
     src: Logo
   });
 
-  let pokemons = null;
+  let searchResults = null;
   function setSearchResults() {
     const filteredPokemons = filterPokemons(searchInput.value);
-    pokemons = createPokemons(filteredPokemons);
-    appendContent(main, pokemons);
+    searchResults = createSearchResults(filteredPokemons);
+    appendContent(main, searchResults);
   }
   setSearchResults();
 
   appendContent(header, [logo, title]);
-  appendContent(main, [searchInput, pokemons]);
+  appendContent(main, [searchInput, searchResults]);
 
   searchInput.addEventListener('input', event => {
-    main.removeChild(pokemons);
+    main.removeChild(searchResults);
     setSearchResults();
 
     const searchValue = event.target.value;
