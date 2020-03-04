@@ -1,9 +1,10 @@
 import './app.scss';
 import { createElement } from './lib/dom';
-import { title } from './components/title';
-import { search } from './components/search';
-import { pokemons } from './components/pokemons';
+import { createTitle } from './components/title';
+import { createSearchInput } from './components/search';
+import { createPokemons } from './components/pokemons';
 import Logo from './assets/pokemon.png';
+import { appendContent } from './lib/dom';
 
 const allPokemons = ['Pikachu', 'Pichu', 'Marwinchu', 'Juliachu', 'Johannachu'];
 
@@ -14,30 +15,27 @@ export function app() {
   const main = createElement('main', {
     className: 'main'
   });
-  const titleElement = title('Pokedex 2k20');
-  const searchElement = search();
+  const title = createTitle('Pokedex 2k20');
+  const searchInput = createSearchInput();
   const logo = createElement('img', {
     className: 'logo',
     src: Logo
   });
+  let pokemons = createPokemons(allPokemons);
 
-  header.appendChild(logo);
-  header.appendChild(titleElement);
-  main.appendChild(searchElement);
+  appendContent(header, [logo, title]);
+  appendContent(main, [searchInput, pokemons]);
 
-  const searchResults = createElement('div', {});
-  main.appendChild(searchResults);
-
-  searchElement.addEventListener('input', event => {
-    searchResults.innerHTML = ''; // clear search results
+  searchInput.addEventListener('input', event => {
+    main.removeChild(pokemons);
 
     const searchValue = event.target.value;
     const filteredPokemons = allPokemons.filter(pokemon => {
       return pokemon.startsWith(searchValue);
     });
 
-    const pokemonsElement = pokemons(filteredPokemons);
-    searchResults.appendChild(pokemonsElement);
+    pokemons = createPokemons(filteredPokemons);
+    appendContent(main, pokemons);
   });
 
   return [header, main];
