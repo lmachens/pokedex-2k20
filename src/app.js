@@ -16,7 +16,7 @@ export function app() {
     className: 'main'
   });
   const title = createTitle('Pokedex 2k20');
-  const searchInput = createSearchInput();
+  const searchInput = createSearchInput(sessionStorage.getItem('searchValue'));
   const logo = createElement('img', {
     className: 'logo',
     src: Logo
@@ -29,13 +29,17 @@ export function app() {
   searchInput.addEventListener('input', event => {
     main.removeChild(pokemons);
 
-    const searchValue = event.target.value.toLowerCase();
+    const searchValue = event.target.value;
+    const lowerCaseSearchValue = searchValue.toLowerCase();
+
     const filteredPokemons = allPokemons.filter(pokemon => {
-      return pokemon.toLowerCase().startsWith(searchValue);
+      return pokemon.toLowerCase().startsWith(lowerCaseSearchValue);
     });
 
     pokemons = createPokemons(filteredPokemons);
     appendContent(main, pokemons);
+
+    sessionStorage.setItem('searchValue', searchValue);
   });
 
   return [header, main];
