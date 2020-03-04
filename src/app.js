@@ -15,7 +15,9 @@ export function app() {
     className: 'main'
   });
   const title = createTitle('Pokedex 2k20');
-  const searchInput = createSearchInput(sessionStorage.getItem('searchValue'));
+  const searchInput = createSearchInput({
+    value: sessionStorage.getItem('searchValue')
+  });
   const logo = createElement('img', {
     className: 'logo',
     src: Logo
@@ -24,7 +26,9 @@ export function app() {
   let searchResults = null;
   function setSearchResults() {
     const filteredPokemons = filterPokemons(searchInput.value);
-    searchResults = createSearchResults(filteredPokemons);
+    searchResults = createSearchResults({
+      items: filteredPokemons
+    });
     appendContent(main, searchResults);
   }
   setSearchResults();
