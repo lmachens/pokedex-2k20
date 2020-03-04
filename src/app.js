@@ -5,17 +5,7 @@ import { createSearchInput } from './components/search';
 import { createSearchResults } from './components/pokemons';
 import Logo from './assets/pokemon.png';
 import { appendContent } from './lib/dom';
-
-const allPokemons = ['Pikachu', 'Pichu', 'Marwinchu', 'Juliachu', 'Johannachu'];
-
-function filterPokemons(searchValue) {
-  const lowerCaseSearchValue = searchValue.toLowerCase();
-
-  const filteredPokemons = allPokemons.filter(pokemon => {
-    return pokemon.toLowerCase().startsWith(lowerCaseSearchValue);
-  });
-  return filteredPokemons;
-}
+import { filterPokemons } from './lib/pokemons';
 
 export function app() {
   const header = createElement('header', {
