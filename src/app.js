@@ -8,6 +8,15 @@ import { appendContent } from './lib/dom';
 
 const allPokemons = ['Pikachu', 'Pichu', 'Marwinchu', 'Juliachu', 'Johannachu'];
 
+function filterPokemons(searchValue) {
+  const lowerCaseSearchValue = searchValue.toLowerCase();
+
+  const filteredPokemons = allPokemons.filter(pokemon => {
+    return pokemon.toLowerCase().startsWith(lowerCaseSearchValue);
+  });
+  return filteredPokemons;
+}
+
 export function app() {
   const header = createElement('header', {
     className: 'header'
@@ -21,24 +30,23 @@ export function app() {
     className: 'logo',
     src: Logo
   });
-  let pokemons = createPokemons(allPokemons);
+
+  let pokemons = null;
+  function setSearchResults() {
+    const filteredPokemons = filterPokemons(searchInput.value);
+    pokemons = createPokemons(filteredPokemons);
+    appendContent(main, pokemons);
+  }
+  setSearchResults();
 
   appendContent(header, [logo, title]);
   appendContent(main, [searchInput, pokemons]);
 
   searchInput.addEventListener('input', event => {
     main.removeChild(pokemons);
+    setSearchResults();
 
     const searchValue = event.target.value;
-    const lowerCaseSearchValue = searchValue.toLowerCase();
-
-    const filteredPokemons = allPokemons.filter(pokemon => {
-      return pokemon.toLowerCase().startsWith(lowerCaseSearchValue);
-    });
-
-    pokemons = createPokemons(filteredPokemons);
-    appendContent(main, pokemons);
-
     sessionStorage.setItem('searchValue', searchValue);
   });
 
