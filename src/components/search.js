@@ -1,12 +1,12 @@
 import './search.scss';
 import { createElement } from '../lib/dom';
 
-export function createSearchInput(value) {
+export function createSearchInput(props) {
   const element = createElement('input', {
     className: 'search',
     type: 'search',
     placeholder: 'Enter Pokemon name...',
-    value: value
+    value: props.value
   });
   return element;
 }

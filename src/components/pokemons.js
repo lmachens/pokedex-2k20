@@ -1,12 +1,12 @@
 import './pokemons.scss';
 import { createElement, appendContent } from '../lib/dom';
 
-export function createPokemons(items) {
+export function createSearchResults(props) {
   const container = createElement('div', {
     className: 'pokemons'
   });
 
-  items.forEach(item => {
+  props.items.forEach(item => {
     const element = createElement('div', {
       innerText: item,
       className: 'pokemon'
