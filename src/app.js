@@ -62,8 +62,8 @@ export function app() {
   }
 
   let searchResults = null;
-  function setSearchResults() {
-    const filteredPokemons = filterPokemons(searchInput.value);
+  async function setSearchResults() {
+    const filteredPokemons = await filterPokemons(searchInput.value);
     searchResults = createSearchResults({
       items: filteredPokemons,
       onSearchResultClick: handleSearchResultClick
@@ -73,7 +73,7 @@ export function app() {
   setSearchResults();
 
   appendContent(header, [logo, title]);
-  appendContent(main, [searchInput, searchResults]);
+  appendContent(main, [searchInput]);
 
   searchInput.addEventListener('input', event => {
     main.removeChild(searchResults);
