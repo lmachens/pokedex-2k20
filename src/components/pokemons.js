@@ -12,7 +12,7 @@ export function createSearchResults(props) {
       className: 'pokemon'
     });
     element.addEventListener('click', () => {
-      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
       // let favorites = JSON.parse(localStorage.getItem('favorites'));
       // if (!favorites) {
       //   favorites = [];
@@ -23,6 +23,11 @@ export function createSearchResults(props) {
       } else {
         const itemIndex = favorites.indexOf(item);
         favorites.splice(itemIndex, 1);
+      }
+
+      if (favorites.length > 3) {
+        // favorites.splice(0, 1);
+        favorites = favorites.slice(1);
       }
 
       const favoritesJSON = JSON.stringify(favorites);
