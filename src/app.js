@@ -6,6 +6,7 @@ import { createSearchResults } from './components/pokemons';
 import Logo from './assets/pokemon.png';
 import { appendContent } from './lib/dom';
 import { filterPokemons } from './lib/pokemons';
+import { createFavorites } from './components/favorites';
 
 export function app() {
   const header = createElement('header', {
@@ -22,6 +23,7 @@ export function app() {
     className: 'logo',
     src: Logo
   });
+  const favorites = createFavorites();
 
   let searchResults = null;
   function setSearchResults() {
@@ -44,5 +46,5 @@ export function app() {
     sessionStorage.setItem('searchValue', searchValue);
   });
 
-  return [header, main];
+  return [header, main, favorites];
 }

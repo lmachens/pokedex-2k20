@@ -1,0 +1,8 @@
+@use "../theme";
+
+.favorites {
+  height: 100px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px dashed theme.$primary-color;
+}
