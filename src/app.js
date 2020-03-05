@@ -8,6 +8,29 @@ import { appendContent } from './lib/dom';
 import { filterPokemons } from './lib/pokemons';
 import { createFavorites } from './components/favorites';
 
+function refreshLocalStorage(item) {
+  let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  // let favorites = JSON.parse(localStorage.getItem('favorites'));
+  // if (!favorites) {
+  //   favorites = [];
+  // }
+
+  if (!favorites.includes(item)) {
+    favorites.push(item);
+  } else {
+    const itemIndex = favorites.indexOf(item);
+    favorites.splice(itemIndex, 1);
+  }
+
+  if (favorites.length > 3) {
+    // favorites.splice(0, 1);
+    favorites = favorites.slice(1);
+  }
+
+  const favoritesJSON = JSON.stringify(favorites);
+  localStorage.setItem('favorites', favoritesJSON);
+}
+
 export function app() {
   const header = createElement('header', {
     className: 'header'
@@ -23,15 +46,27 @@ export function app() {
     className: 'logo',
     src: Logo
   });
-  const favorites = createFavorites({
-    items: ['Pikachu', 'Pichu', 'Marwinchu']
+  const favoritesContainer = createElement('div');
+  let favorites = createFavorites({
+    items: JSON.parse(localStorage.getItem('favorites')) || []
   });
+  appendContent(favoritesContainer, favorites);
+
+  function handleSearchResultClick(item) {
+    refreshLocalStorage(item);
+    favoritesContainer.removeChild(favorites);
+    favorites = createFavorites({
+      items: JSON.parse(localStorage.getItem('favorites')) || []
+    });
+    appendContent(favoritesContainer, favorites);
+  }
 
   let searchResults = null;
   function setSearchResults() {
     const filteredPokemons = filterPokemons(searchInput.value);
     searchResults = createSearchResults({
-      items: filteredPokemons
+      items: filteredPokemons,
+      onSearchResultClick: handleSearchResultClick
     });
     appendContent(main, searchResults);
   }
@@ -48,5 +83,5 @@ export function app() {
     sessionStorage.setItem('searchValue', searchValue);
   });
 
-  return [header, main, favorites];
+  return [header, main, favoritesContainer];
 }
