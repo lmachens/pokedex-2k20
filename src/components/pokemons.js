@@ -11,6 +11,9 @@ export function createSearchResults(props) {
       innerText: item,
       className: 'pokemon'
     });
+    element.addEventListener('click', () => {
+      props.onSearchResultClick(item);
+    });
     appendContent(container, element);
   });
   return container;
