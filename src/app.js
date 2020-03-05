@@ -23,7 +23,9 @@ export function app() {
     className: 'logo',
     src: Logo
   });
-  const favorites = createFavorites();
+  const favorites = createFavorites({
+    items: ['Pikachu', 'Pichu', 'Marwinchu']
+  });
 
   let searchResults = null;
   function setSearchResults() {

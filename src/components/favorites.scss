@@ -5,4 +5,20 @@
   margin: 10px;
   padding: 10px;
   border: 1px dashed theme.$primary-color;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.favorite {
+  width: 120px;
+  height: 80px;
+  font-size: 0.8rem;
+  background-image: linear-gradient(
+    to bottom right,
+    theme.$favorite-color,
+    theme.$secondary-color
+  );
+  border: 1px solid theme.$primary-color;
+  padding: 4px;
+  text-align: center;
 }
