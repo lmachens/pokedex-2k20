@@ -66,15 +66,22 @@ export function app() {
   async function setSearchResults() {
     const loading = createLoading();
     appendContent(main, loading);
-    // searchInput.disabled = true;
-    const filteredPokemons = await filterPokemons(searchInput.value);
-    searchResults = createSearchResults({
-      items: filteredPokemons,
-      onSearchResultClick: handleSearchResultClick
-    });
-    appendContent(main, searchResults);
-    main.removeChild(loading);
-    // searchInput.disabled = false;
+
+    try {
+      const filteredPokemons = await filterPokemons(searchInput.value);
+      searchResults = createSearchResults({
+        items: filteredPokemons,
+        onSearchResultClick: handleSearchResultClick
+      });
+      appendContent(main, searchResults);
+    } catch (error) {
+      const errorMessage = createElement('div', {
+        innerText: 'Error: ' + error.message
+      });
+      appendContent(main, errorMessage);
+    } finally {
+      main.removeChild(loading);
+    }
   }
 
   appendContent(header, [logo, title]);

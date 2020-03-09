@@ -6,6 +6,7 @@ function waitFor(time) {
 
 async function getPokemons() {
   await waitFor(2000);
+  // throw new Error('Something bad happend 🤬');
   const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=806');
   const results = await response.json();
   const pokemons = results.results;

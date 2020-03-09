@@ -6,15 +6,22 @@ export function createSearchResults(props) {
     className: 'pokemons'
   });
 
-  props.items.forEach(item => {
-    const element = createElement('div', {
-      innerText: item,
-      className: 'pokemon'
+  if (props.items.length === 0) {
+    const notFound = createElement('div', {
+      innerText: 'No Pokemon found 🧐'
     });
-    element.addEventListener('click', () => {
-      props.onSearchResultClick(item);
+    appendContent(container, notFound);
+  } else {
+    props.items.forEach(item => {
+      const element = createElement('div', {
+        innerText: item,
+        className: 'pokemon'
+      });
+      element.addEventListener('click', () => {
+        props.onSearchResultClick(item);
+      });
+      appendContent(container, element);
     });
-    appendContent(container, element);
-  });
+  }
   return container;
 }
