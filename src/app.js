@@ -7,6 +7,7 @@ import Logo from './assets/pokemon.png';
 import { appendContent } from './lib/dom';
 import { filterPokemons } from './lib/pokemons';
 import { createFavorites } from './components/favorites';
+import { createLoading } from './components/loading';
 
 function refreshLocalStorage(item) {
   let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -63,17 +64,23 @@ export function app() {
 
   let searchResults = null;
   async function setSearchResults() {
+    const loading = createLoading();
+    appendContent(main, loading);
+    // searchInput.disabled = true;
     const filteredPokemons = await filterPokemons(searchInput.value);
     searchResults = createSearchResults({
       items: filteredPokemons,
       onSearchResultClick: handleSearchResultClick
     });
     appendContent(main, searchResults);
+    main.removeChild(loading);
+    // searchInput.disabled = false;
   }
-  setSearchResults();
 
   appendContent(header, [logo, title]);
   appendContent(main, [searchInput]);
+
+  setSearchResults();
 
   searchInput.addEventListener('input', event => {
     main.removeChild(searchResults);

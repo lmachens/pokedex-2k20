@@ -1,0 +1,20 @@
+@use '../theme.scss';
+
+.loading {
+  margin-top: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    color: theme.$secondary-color;
+  }
+
+  50% {
+    color: theme.$favorite-color;
+  }
+
+  100% {
+    color: theme.$secondary-color;
+  }
+}
