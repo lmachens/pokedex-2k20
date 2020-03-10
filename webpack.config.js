@@ -11,7 +11,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Pokedex 2k20'
+      title: 'Pokedex 2k20',
+      meta: {
+        viewport: 'width=device-width, initial-scale=1.0, shrink-to-fit=no'
+      }
     })
   ],
   devServer: {
